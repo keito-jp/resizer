@@ -30,11 +30,12 @@ func New(args []string) (o Options, err error) {
 	DBAddress := app.Flag("dbaddress", "Database address").OverrideDefaultFromEnvar("RESIZER_DB_ADDRESS").Required().String()
 	DBName := app.Flag("dbname", "Database name").OverrideDefaultFromEnvar("RESIZER_DB_NAME").Required().String()
 
-	EnvHosts := os.Getenv("RESIZER_HOSTS")
 	var Hosts *[]string
-	if EnvHosts == "" {
-		Hosts = app.Flag("host", "Allowed host").Strings()
+	FlagHosts := app.Flag("host", "Allowed host").Strings()
+	if FlagHosts != nil {
+		Hosts = FlagHosts
 	} else {
+		EnvHosts := os.Getenv("RESIZER_HOSTS")
 		SplitedHosts := strings.Split(EnvHosts, ",")
 		Hosts = &SplitedHosts
 	}
