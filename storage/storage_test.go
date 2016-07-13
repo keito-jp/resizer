@@ -1,8 +1,10 @@
 package storage_test
 
 import (
+	"os"
 	"testing"
 
+	"github.com/go-microservices/resizer/option"
 	"github.com/go-microservices/resizer/storage"
 )
 
@@ -10,7 +12,8 @@ var s *storage.Storage
 
 func TestInit(t *testing.T) {
 	var err error
-	s, err = storage.New()
+	o, err := option.New(os.Args[1:])
+	s, err = storage.New(o)
 	if err != nil {
 		t.Fatalf("Can't create instance: %v", err)
 	}
