@@ -13,6 +13,9 @@ var s *storage.Storage
 func TestInit(t *testing.T) {
 	var err error
 	o, err := option.New(os.Args[1:])
+	if err != nil {
+		t.Fatalf("fail to create options: error=%v", err)
+	}
 	s, err = storage.New(o)
 	if err != nil {
 		t.Fatalf("Can't create instance: %v", err)
