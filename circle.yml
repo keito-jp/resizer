@@ -1,8 +1,8 @@
 checkout:
   post:
     - rm -rf $HOME/.go_workspace/src/github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME
-    - mkdir -p $HOME/.go_workspace/src/github.com/$CIRCLE_PROJECT_USERNAME
-    - cp -r $HOME/$CIRCLE_PROJECT_REPONAME $HOME/.go_workspace/src/github.com/$CIRCLE_PROJECT_USERNAME
+    - mkdir -p $HOME/.go_workspace/src/github.com/go-microservices
+    - cp -r $HOME/$CIRCLE_PROJECT_REPONAME $HOME/.go_workspace/src/github.com/go-microservices
 
 machine:
   timezone: Asia/Tokyo
@@ -17,7 +17,7 @@ dependencies:
 test:
   pre:
     - mysql -u root -e "CREATE DATABASE resizer;"
-    - echo $GCLOUD_ACCOUNT_JSON | base64 --decode > $HOME/.go_workspace/src/github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME/gcloud.json
+    - echo $GCLOUD_ACCOUNT_JSON | base64 --decode > $HOME/.go_workspace/src/github.com/go-microservices/$CIRCLE_PROJECT_REPONAME/gcloud.json
   override:
     - go test github.com/go-microservices/resizer/fetcher
     - go test github.com/go-microservices/resizer/log
