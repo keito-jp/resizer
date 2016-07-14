@@ -40,4 +40,4 @@ deployment:
     - git config --global user.email "release@circleci.com"
     - git config --global user.name "CircleCI"
     - git commit ".goxc.json" -m "Bump version [ci skip]"
-    - git push https://${GITHUB_TOKEN}@github.com/go-microservices/resizer.git release}]
+    - git push https://${GITHUB_TOKEN}@github.com/go-microservices/resizer.git release
