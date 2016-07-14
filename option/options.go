@@ -29,20 +29,19 @@ func New(args []string) (o Options, err error) {
 	DBProtocol := app.Flag("dbprotocol", "Database access protocol").OverrideDefaultFromEnvar("RESIZER_DB_PROTOCOL").Required().String()
 	DBAddress := app.Flag("dbaddress", "Database address").OverrideDefaultFromEnvar("RESIZER_DB_ADDRESS").Required().String()
 	DBName := app.Flag("dbname", "Database name").OverrideDefaultFromEnvar("RESIZER_DB_NAME").Required().String()
-
-	var Hosts *[]string
 	FlagHosts := app.Flag("host", "Allowed host").Strings()
-	if FlagHosts != nil {
-		Hosts = FlagHosts
-	} else {
-		EnvHosts := os.Getenv("RESIZER_HOSTS")
-		SplitedHosts := strings.Split(EnvHosts, ",")
-		Hosts = &SplitedHosts
-	}
 
 	_, err = app.Parse(args)
 	if err != nil {
 		return
+	}
+
+	var Hosts *[]string
+	if *FlagHosts == nil {
+		SplitedHosts := strings.Split(os.Getenv("RESIZER_HOSTS"), ",")
+		Hosts = &SplitedHosts
+	} else {
+		Hosts = FlagHosts
 	}
 
 	return Options{
