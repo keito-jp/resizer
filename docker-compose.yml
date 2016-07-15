@@ -12,6 +12,7 @@ services:
       RESIZER_DB_ADDRESS: $RESIZER_DB_ADDRESS
       RESIZER_DB_NAME: $RESIZER_DB_NAME
       RESIZER_HOSTS: $RESIZER_HOSTS
+      GITHUB_TOKEN: $GITHUB_TOKEN
     volumes:
       - ./secret:/secret
     depends_on:
