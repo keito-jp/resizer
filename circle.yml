@@ -10,6 +10,7 @@ dependencies:
   cache_directories:
     - ~/.docker
   pre:
+    - sudo pip install docker-compose
     - sudo add-apt-repository ppa:masterminds/glide -y && sudo apt-get update -y
     - sudo apt-get install glide -y
   override:
