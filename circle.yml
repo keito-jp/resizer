@@ -18,8 +18,8 @@ dependencies:
 
 test:
   pre:
-    - mkdir -p $HOME/.go_workspace/src/github.com/go-microservices/$CIRCLE_PROJECT_REPONAME/secret
-    - echo $GCLOUD_ACCOUNT_JSON | base64 --decode > $HOME/.go_workspace/src/github.com/go-microservices/$CIRCLE_PROJECT_REPONAME/secret/gcloud.json
+    - mkdir -p $HOME/$CIRCLE_PROJECT_REPONAME/secret
+    - echo $GCLOUD_ACCOUNT_JSON | base64 --decode > $HOME/$CIRCLE_PROJECT_REPONAME/secret/gcloud.json
   override:
     - ./bin/test
 
