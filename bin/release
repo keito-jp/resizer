@@ -1,9 +1,4 @@
 #!/bin/bash
 
-goxc -wlc default publish-github -apikey=$GITHUB_TOKEN
-goxc bump
-goxc -bc="linux,windows,darwin"
-git config --global user.email "release@circleci.com"
-git config --global user.name "CircleCI"
-git commit ".goxc.json" -m "Bump version [ci skip]"
-git push https://${GITHUB_TOKEN}@github.com/go-microservices/resizer.git release
+gox -output "dist/{{.Dir}}_{{.OS}}_{{.Arch}}"
+ghr -t $GITHUB_TOKEN -u $GITHUB_USERNAME -r $CIRCLE_PROJECT_REPONAME --replace $(git tag) dist/
