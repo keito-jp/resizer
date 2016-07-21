@@ -1,8 +1,6 @@
 FROM golang:1.6
 
-RUN apt-get update -y && apt-get install git -y && \
-  go get github.com/mitchellh/gox && \
-  go get github.com/tcnksm/ghr
+RUN apt-get update -y && apt-get install git
 
 RUN \
   wget https://github.com/Masterminds/glide/releases/download/v0.11.0/glide-v0.11.0-linux-amd64.tar.gz && \

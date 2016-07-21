@@ -1,4 +1,6 @@
 #!/bin/bash
 
+go get github.com/mitchellh/gox github.com/tcnksm/ghr github.com/syoya/versioner
 gox -output "dist/{{.Dir}}_{{.OS}}_{{.Arch}}"
-ghr -t $GITHUB_TOKEN -u $GITHUB_USERNAME -r $CIRCLE_PROJECT_REPONAME --replace $(git tag) dist/
+versioner bump
+ghr -t $GITHUB_TOKEN -u $GITHUB_USERNAME -r $CIRCLE_PROJECT_REPONAME --replace $(versioner show) dist/
